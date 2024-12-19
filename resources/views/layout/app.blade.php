@@ -13,7 +13,7 @@
         <div class="bg-white shadow-md p-4 w-1/5 md:w-1/6 h-screen overflow-y-auto">
             <div class="flex flex-col justify-start space-y-4">
                 <div class="flex items-center p-1">
-                    <h1 class="text-lg font-bold">SISPAK</h1> 
+                    <img src="{{ asset('img/logo.png') }}" alt="" class="h-10 w-auto">
                 </div>
                 <a href="{{ route('dashboard') }}" 
                 class="{{ Route::is('dashboard') ? 'text-white bg-blue-500' : 'text-blue-500 bg-white' }} p-2 rounded-lg hover:text-white hover:bg-blue-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105">

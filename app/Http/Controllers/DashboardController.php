@@ -8,6 +8,7 @@ class DashboardController extends Controller
 {
     public function dashboard(){
         $title = 'UAP SISPAK';
+        
         return view('dashboard', compact('title'));
     }
 }

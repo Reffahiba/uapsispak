@@ -19,8 +19,8 @@ class PenyakitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_penyakit' => 'required|string|max:255',
-            'kode_penyakit' => 'required|string|max:50|unique:penyakit',
+            'nama_gejala' => 'required|string|max:255',
+            'kode_gejala' => 'required|string|max:50|unique:penyakit',
         ]);
 
         Penyakit::create($request->all());
@@ -30,27 +30,27 @@ class PenyakitController extends Controller
 
     public function edit($id)
     {
-        $penyakit = Penyakit::findOrFail($id);
+        $gejala = Penyakit::findOrFail($id);
         return view('penyakit.edit', compact('penyakit'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_penyakit' => 'required|string|max:255',
-            'kode_penyakit' => 'required|string|max:50|unique:penyakit,kode_penyakit,' . $id,
+            'nama_gejala' => 'required|string|max:255',
+            'kode_gejala' => 'required|string|max:50|unique:penyakit,kode_penyakit,' . $id,
         ]);
 
-        $penyakit = Penyakit::findOrFail($id);
-        $penyakit->update($request->all());
+        $gejala = Penyakit::findOrFail($id);
+        $gejala->update($request->all());
 
         return redirect()->route('penyakit.index')->with('success', 'Penyakit berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $penyakit = Penyakit::findOrFail($id);
-        $penyakit->delete();
+        $gejala = Penyakit::findOrFail($id);
+        $gejala->delete();
 
         return redirect()->route('penyakit.index')->with('success', 'Penyakit berhasil dihapus.');
     }

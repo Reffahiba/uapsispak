@@ -19,8 +19,8 @@
                 class="{{ Route::is('dashboard') ? 'text-white bg-blue-500' : 'text-blue-500 bg-white' }} p-2 rounded-lg hover:text-white hover:bg-blue-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105">
                     Diagnosa
                 </a>
-                <a href="#" 
-                class="text-blue-500 bg-white p-2 rounded-lg hover:text-white hover:bg-blue-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105">
+                <a href="{{ route('daftar-gejala') }}" 
+                class="{{ Route::is('daftar-gejala') ? 'text-white bg-blue-500' : 'text-blue-500 bg-white' }} p-2 rounded-lg hover:text-white hover:bg-blue-500 font-semibold transition duration-300 ease-in-out transform hover:scale-105">
                     Daftar Gejala
                 </a>
                 <a href="{{ route('daftar-penyakit') }}" 

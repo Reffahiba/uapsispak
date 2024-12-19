@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('penyakit', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_penyakit');
-            $table->string('kode_penyakit')->unique();
+            $table->string('nama_gejala');
+            $table->string('kode_gejala')->unique();
             $table->timestamps();
         });
     }

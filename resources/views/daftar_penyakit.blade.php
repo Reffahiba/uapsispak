@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($penyakit as $p)
+                @foreach($gejala as $p)
                     <tr>
                         <td class="border px-4 py-2">{{ $loop->iteration }}</td>
                         <td class="border px-4 py-2">{{ $p->nama_penyakit }}</td>

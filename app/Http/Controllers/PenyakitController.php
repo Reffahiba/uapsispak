@@ -2,56 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyakit;
 use Illuminate\Http\Request;
 
 class PenyakitController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $title = "Daftar Penyakit";
-        return view('daftar_penyakit', compact('title'));
+        $penyakit = Penyakit::all();
+        return view('daftar_penyakit', compact('title', 'penyakit'));
     }
 
     public function create()
     {
-        return view('penyakit.create');
+        $title = "Tambah Penyakit";
+        return view('penyakit-add', compact('title'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nama_gejala' => 'required|string|max:255',
-            'kode_gejala' => 'required|string|max:50|unique:penyakit',
+            'nama_penyakit' => 'required|string|max:255',
+            'kode_penyakit' => 'required|string|max:50|unique:penyakit,kode_penyakit',
         ]);
 
-        Penyakit::create($request->all());
+        Penyakit::create([
+            'nama_penyakit' => $request->nama_penyakit,
+            'kode_penyakit' => $request->kode_penyakit,
+        ]);
 
-        return redirect()->route('penyakit.index')->with('success', 'Penyakit berhasil ditambahkan.');
+        return redirect()->route('daftar-penyakit')->with('success', 'Penyakit berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
-        $gejala = Penyakit::findOrFail($id);
-        return view('penyakit.edit', compact('penyakit'));
+        $title = "Edit Penyakit";
+        $penyakit = Penyakit::findOrFail($id);
+        return view('penyakit-edit', compact('penyakit', 'title'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_gejala' => 'required|string|max:255',
-            'kode_gejala' => 'required|string|max:50|unique:penyakit,kode_penyakit,' . $id,
+            'nama_penyakit' => 'required|string|max:255',
+            'kode_penyakit' => 'required|string|max:50|unique:penyakit,kode_penyakit,' . $id,
         ]);
 
-        $gejala = Penyakit::findOrFail($id);
-        $gejala->update($request->all());
+        $penyakit = Penyakit::findOrFail($id);
+        $penyakit->update([
+            'nama_penyakit' => $request->nama_penyakit,
+            'kode_penyakit' => $request->kode_penyakit,
+        ]);
 
-        return redirect()->route('penyakit.index')->with('success', 'Penyakit berhasil diperbarui.');
+        return redirect()->route('daftar-penyakit')->with('success', 'Penyakit berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $gejala = Penyakit::findOrFail($id);
-        $gejala->delete();
+        $penyakit = Penyakit::findOrFail($id);
+        $penyakit->delete();
 
-        return redirect()->route('penyakit.index')->with('success', 'Penyakit berhasil dihapus.');
+        return redirect()->route('daftar-penyakit')->with('success', 'Penyakit berhasil dihapus.');
     }
 }

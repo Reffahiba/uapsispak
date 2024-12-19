@@ -21,7 +21,15 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+//Route untuk gejala
 Route::get('/daftar_gejala', [DaftarGejalaController::class, 'daftar_gejala'])->name('daftar-gejala');
+Route::get('/daftar-penyakit', [PenyakitController::class, 'index'])->name('daftar-penyakit');
+Route::get('/tambah-gejala', [GejalaController::class, 'create'])->name('gejala.create');
+Route::post('/tambah-gejala', [GejalaController::class, 'store'])->name('gejala.store');
+Route::get('/edit-gejala/{id}', [GejalaController::class, 'edit'])->name('gejala.edit');
+Route::put('/update-gejala/{id}', [GejalaController::class, 'update'])->name('gejala.update');
+Route::delete('/delete-gejala/{id}', [GejalaController::class, 'tambah_gejala'])->name('gejala.destroy');
 
 //Route untuk penyakit
 Route::get('/daftar-penyakit', [PenyakitController::class, 'index'])->name('daftar-penyakit');

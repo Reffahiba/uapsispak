@@ -24,12 +24,12 @@ class GejalaController extends Controller
     {
         $request->validate([
             'nama_gejala' => 'required|string|max:255',
-            'kode_gejala' => 'required|string|max:50|unique:gejala,kode_gejala',
+            'kode_gejala' => 'required|string|max:50|unique:daftar_gejala,kode_gejala',
         ]);
 
         Gejala::create([
             'nama_gejala' => $request->nama_gejala,
-            'kode_gejala' => $request->kode_gejala,
+            'kode_gejala' => 'G' . $request->kode_gejala,
         ]);
 
         return redirect()->route('daftar-gejala')->with('success', 'Gejala berhasil ditambahkan.');
@@ -46,7 +46,7 @@ class GejalaController extends Controller
     {
         $request->validate([
             'nama_gejala' => 'required|string|max:255',
-            'kode_gejala' => 'required|string|max:50|unique:gejala,kode_gejala,' . $id,
+            'kode_gejala' => 'required|string|max:50|unique:daftar_gejala,kode_gejala,' . $id,
         ]);
 
         $gejala = Gejala::findOrFail($id);

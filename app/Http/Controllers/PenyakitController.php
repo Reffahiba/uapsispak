@@ -24,12 +24,12 @@ class PenyakitController extends Controller
     {
         $request->validate([
             'nama_penyakit' => 'required|string|max:255',
-            'kode_penyakit' => 'required|string|max:50|unique:penyakit,kode_penyakit',
+            'kode_penyakit' => 'required|string|max:50|unique:daftar_penyakit,kode_penyakit',
         ]);
 
         Penyakit::create([
             'nama_penyakit' => $request->nama_penyakit,
-            'kode_penyakit' => $request->kode_penyakit,
+            'kode_penyakit' => 'P' . $request->kode_penyakit,
         ]);
 
         return redirect()->route('daftar-penyakit')->with('success', 'Penyakit berhasil ditambahkan.');
@@ -52,7 +52,7 @@ class PenyakitController extends Controller
         $penyakit = Penyakit::findOrFail($id);
         $penyakit->update([
             'nama_penyakit' => $request->nama_penyakit,
-            'kode_penyakit' => $request->kode_penyakit,
+            'kode_penyakit' => 'P' . $request->kode_penyakit,
         ]);
 
         return redirect()->route('daftar-penyakit')->with('success', 'Penyakit berhasil diperbarui.');
